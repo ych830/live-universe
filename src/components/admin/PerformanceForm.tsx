@@ -108,7 +108,7 @@ export function PerformanceForm({
           </div>
           <label className="flex items-center gap-2 text-sm">
             <input type="checkbox" checked={p.featured} onChange={(e) => set("featured", e.target.checked)} className="h-4 w-4 accent-pink" />
-            메인 화면 맨 위 슬라이드에 보여주기
+            첫 화면 맨 앞에 보여주기
           </label>
         </Card>
       </div>

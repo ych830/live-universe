@@ -227,7 +227,7 @@ function Dashboard({ sb, email, source }: { sb: SupabaseClient; email: string; s
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
                         <StatusBadge status={getStatus(p)} />
-                        {p.featured && <span className="text-xs text-lime">메인 노출</span>}
+                        {p.featured && <span className="text-xs text-lime">첫 화면 맨 앞</span>}
                       </div>
                       <p className="mt-1.5 truncate font-semibold">{p.title}</p>
                       <p className="text-xs text-muted">

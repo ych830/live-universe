@@ -1,18 +1,15 @@
 import Link from "next/link";
 import type { Company } from "@/lib/types";
 
-const PLANET = ["from-violet to-pink", "from-sky-400 to-violet", "from-lime to-emerald-400", "from-amber-300 to-pink", "from-pink to-orange-400"];
-
 /** 가운데 LIVE UNIVERSE, 계열사들이 궤도를 도는 그림 */
 export function Orbit({ companies }: { companies: Company[] }) {
   const n = Math.max(companies.length, 1);
   return (
     <div className="@container relative mx-auto aspect-square w-full max-w-[520px]">
-      <div className="absolute inset-[6%] rounded-full border border-line" />
-      <div className="absolute inset-[22%] rounded-full border border-dashed border-fg/15" />
-      <div className="absolute inset-[38%] rounded-full bg-gradient-to-br from-violet/40 to-pink/30 blur-2xl" />
-      <div className="absolute inset-[36%] flex items-center justify-center rounded-full border border-fg/20 bg-ink/60 text-center backdrop-blur">
-        <span className="font-display text-[11px] leading-tight tracking-[0.16em] md:text-sm">
+      <div className="absolute inset-[6%] rounded-full border border-white/40" />
+      <div className="absolute inset-[22%] rounded-full border border-dashed border-white/30" />
+      <div className="absolute inset-[36%] flex items-center justify-center rounded-full bg-white text-center text-cobalt">
+        <span className="font-display text-[11px] font-extrabold leading-tight tracking-[0.08em] md:text-sm">
           LIVE
           <br />
           UNIVERSE
@@ -29,10 +26,10 @@ export function Orbit({ companies }: { companies: Company[] }) {
                     href={`/performances?company=${c.slug}`}
                     className="group -ml-9 -mt-9 flex h-[72px] w-[72px] flex-col items-center justify-center md:-ml-12 md:-mt-12 md:h-24 md:w-24"
                   >
-                    <span className={`flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br ${PLANET[i % PLANET.length]} font-display text-sm font-semibold text-ink shadow-[0_0_40px_-6px] shadow-violet/60 transition-transform group-hover:scale-110 md:h-16 md:w-16 md:text-base`}>
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-black font-display text-sm font-bold text-white transition-transform group-hover:scale-110 md:h-14 md:w-14 md:text-base">
                       {(c.nameEn ?? c.name).slice(0, 1)}
                     </span>
-                    <span className="mt-2 whitespace-nowrap font-display text-[9px] tracking-[0.14em] text-fg/80 md:text-[10px]">{c.nameEn ?? c.name}</span>
+                    <span className="mt-2 whitespace-nowrap font-display text-[9px] font-semibold tracking-[0.12em] md:text-[10px]">{c.nameEn ?? c.name}</span>
                   </Link>
                 </div>
               </div>

@@ -1,20 +1,20 @@
 import { STATUS_LABEL, type Status } from "@/lib/status";
 
 const STYLE: Record<Status, string> = {
-  onsale: "bg-pink text-white",
-  opensoon: "bg-lime text-ink",
-  upcoming: "border border-fg/40 bg-ink/85 text-fg backdrop-blur",
-  past: "bg-ink/85 text-fg/70 backdrop-blur",
+  onsale: "bg-white text-cobalt",
+  opensoon: "bg-black text-white",
+  upcoming: "border border-white/70 bg-black/30 text-white backdrop-blur",
+  past: "bg-black/50 text-white/80 backdrop-blur",
 };
 
 export function StatusBadge({ status, size = "sm" }: { status: Status; size?: "sm" | "md" }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full font-display tracking-[0.12em] ${STYLE[status]} ${
-        size === "md" ? "px-3.5 py-1.5 text-[11px]" : "px-2.5 py-1 text-[9.5px]"
+      className={`inline-flex items-center gap-1.5 font-display font-semibold tracking-[0.1em] ${STYLE[status]} ${
+        size === "md" ? "px-3 py-1.5 text-[11px]" : "px-2 py-1 text-[10px]"
       }`}
     >
-      {status === "onsale" && <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />}
+      {status === "onsale" && <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cobalt" />}
       {STATUS_LABEL[status].en}
     </span>
   );

@@ -38,7 +38,7 @@ collections:
         search_fields: [name, nameEn]
         display_fields: [name]
         required: false
-      - { name: featured, label: 메인 화면 맨 위 슬라이드에 보여주기, widget: boolean, default: false, required: false }
+      - { name: featured, label: 첫 화면 맨 앞에 보여주기, widget: boolean, default: false, required: false }
       - { name: startDate, label: 시작일, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
       - { name: endDate, label: 종료일 (하루 공연이면 비움), widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
       - { name: timeText, label: 공연 시간 안내, widget: string, required: false, hint: "예: 토 18:00 / 일 17:00" }

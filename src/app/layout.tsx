@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Unbounded } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "./globals.css";
 import { SITE } from "@/lib/site";
 
-const unbounded = Unbounded({
-  variable: "--font-unbounded",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["400", "600", "800"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ko" className={unbounded.variable}>
+    <html lang="ko" className={poppins.variable}>
       <body className="min-h-dvh">{children}</body>
     </html>
   );
