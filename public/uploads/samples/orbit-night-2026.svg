@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700" width="500" height="700">
+<defs><linearGradient id="g" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#1b0f4d"/><stop offset="1" stop-color="#ff4f8b"/></linearGradient></defs>
+<rect width="500" height="700" fill="url(#g)"/>
+<g fill="none" stroke="#ffd166" stroke-opacity=".55"><ellipse cx="250" cy="300" rx="230" ry="80" transform="rotate(-18 250 300)"/><ellipse cx="250" cy="300" rx="170" ry="170" stroke-opacity=".25"/><ellipse cx="250" cy="300" rx="260" ry="110" transform="rotate(24 250 300)" stroke-opacity=".35"/></g><circle cx="250" cy="300" r="70" fill="#ffd166" fill-opacity=".9"/><circle cx="455" cy="240" r="12" fill="#ffd166"/><circle cx="70" cy="390" r="7" fill="#ffd166"/>
+<g font-family="Helvetica, Arial, sans-serif" fill="#ffffff">
+<text x="32" y="52" font-size="13" letter-spacing="3" font-weight="700">LIVE UNIVERSE PRESENTS</text>
+<text x="468" y="52" font-size="13" letter-spacing="2" text-anchor="end" opacity=".8">SAMPLE</text>
+<text x="28" y="360.72" font-size="92" font-weight="900" letter-spacing="-3">ORBIT</text>
+<text x="28" y="445.36" font-size="92" font-weight="900" letter-spacing="-3">NIGHT</text>
+<text x="28" y="530" font-size="92" font-weight="900" letter-spacing="-3">2026</text>
+<text x="32" y="568" font-size="16" letter-spacing="2" font-weight="700">YEAR-END FESTIVAL</text>
+<line x1="32" x2="468" y1="650" y2="650" stroke="#ffffff" stroke-opacity=".5"/>
+<text x="32" y="676" font-size="14" letter-spacing="1" font-weight="700">2026.12.24 — 12.25</text>
+<text x="468" y="676" font-size="14" letter-spacing="1" text-anchor="end">KSPO DOME, SEOUL</text>
+</g></svg>

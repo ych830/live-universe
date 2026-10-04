@@ -1,0 +1,109 @@
+# Decap CMS 설정. backend 는 index.html 에서 넣는다.
+# 여기서 저장하면 content/ 폴더의 JSON 이 바뀌고, 배포 사이트는 다시 빌드된다.
+locale: ko
+media_folder: public/uploads
+public_folder: /uploads
+site_url: /
+display_url: /
+
+collections:
+  - name: performances
+    label: 공연
+    label_singular: 공연
+    folder: content/performances
+    format: json
+    extension: json
+    create: true
+    delete: true
+    identifier_field: title
+    slug: "{{fields.slug}}"
+    summary: "{{startDate}} · {{title}}"
+    sortable_fields: [startDate, title]
+    preview_path: "performances/{{slug}}"
+    fields:
+      - { name: poster, label: 포스터, widget: image, required: false }
+      - { name: title, label: 공연 제목, widget: string }
+      - name: slug
+        label: 주소 (영문)
+        widget: string
+        hint: "영문 소문자, 숫자, - 만. 예: blue-hour-2026-seoul (만든 뒤에는 바꾸지 마세요)"
+        pattern: ["^[a-z0-9-]+$", "영문 소문자, 숫자, - 만 쓸 수 있어요"]
+      - { name: subtitle, label: 부제, widget: string, required: false }
+      - { name: artist, label: 출연, widget: string, required: false }
+      - name: company
+        label: 기획 계열사
+        widget: relation
+        collection: companies
+        value_field: slug
+        search_fields: [name, nameEn]
+        display_fields: [name]
+        required: false
+      - { name: featured, label: 메인 화면 맨 위 슬라이드에 보여주기, widget: boolean, default: false, required: false }
+      - { name: startDate, label: 시작일, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { name: endDate, label: 종료일 (하루 공연이면 비움), widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
+      - { name: timeText, label: 공연 시간 안내, widget: string, required: false, hint: "예: 토 18:00 / 일 17:00" }
+      - { name: venue, label: 장소, widget: string, required: false }
+      - { name: ageRating, label: 관람 등급, widget: string, required: false }
+      - { name: runningTime, label: 관람 시간, widget: string, required: false }
+      - { name: price, label: 티켓 가격, widget: string, required: false }
+      - name: ticketOpenAt
+        label: 티켓 오픈 일시
+        widget: datetime
+        required: false
+        hint: "이 시각 전에는 OPEN SOON 과 카운트다운이, 이후에는 NOW ON SALE 이 보여요"
+      - name: ticketLinks
+        label: 예매처 링크
+        label_singular: 예매처
+        widget: list
+        required: false
+        summary: "{{fields.vendor}} — {{fields.url}}"
+        fields:
+          - name: vendor
+            label: 예매처
+            widget: select
+            default: nol
+            options:
+              - { label: NOL 티켓, value: nol }
+              - { label: YES24 티켓, value: yes24 }
+              - { label: 멜론티켓, value: melon }
+              - { label: 티켓링크, value: ticketlink }
+              - { label: 기타, value: etc }
+          - { name: label, label: 버튼 이름 (기타일 때), widget: string, required: false }
+          - name: url
+            label: 링크
+            widget: string
+            pattern: ["^https?://", "https:// 로 시작해야 해요"]
+      - { name: description, label: 상세 설명, widget: text, required: false }
+      - name: gallery
+        label: 사진
+        label_singular: 사진
+        widget: list
+        required: false
+        field: { name: image, label: 사진, widget: image }
+
+  - name: companies
+    label: 계열사
+    label_singular: 계열사
+    folder: content/companies
+    format: json
+    extension: json
+    create: true
+    delete: true
+    identifier_field: name
+    slug: "{{fields.slug}}"
+    summary: "{{order}}. {{name}}"
+    sortable_fields: [order, name]
+    fields:
+      - { name: name, label: 이름, widget: string }
+      - { name: nameEn, label: 영문 이름, widget: string, required: false }
+      - name: slug
+        label: 주소 (영문)
+        widget: string
+        hint: "예: nova-stage (만든 뒤에는 바꾸지 마세요 — 공연들이 이 값으로 계열사를 찾아요)"
+        pattern: ["^[a-z0-9-]+$", "영문 소문자, 숫자, - 만 쓸 수 있어요"]
+      - { name: tagline, label: 한 줄 소개, widget: string, required: false }
+      - { name: description, label: 소개, widget: text, required: false }
+      - { name: logo, label: 로고, widget: image, required: false }
+      - { name: website, label: 홈페이지, widget: string, required: false }
+      - { name: instagram, label: 인스타그램, widget: string, required: false }
+      - { name: order, label: 보여줄 순서, widget: number, value_type: int, default: 0 }

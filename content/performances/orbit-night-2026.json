@@ -1,0 +1,29 @@
+{
+  "slug": "orbit-night-2026",
+  "title": "ORBIT NIGHT 2026",
+  "subtitle": "라이브유니버스 연말 페스티벌",
+  "artist": "출연진 추후 공개",
+  "company": "stardust-live",
+  "startDate": "2026-12-24",
+  "endDate": "2026-12-25",
+  "timeText": "12.24 (목) 18:00 / 12.25 (금) 17:00",
+  "venue": "올림픽공원 KSPO DOME",
+  "ageRating": "만 7세 이상",
+  "runningTime": "약 300분",
+  "price": "1일권 132,000원 / 양일권 220,000원",
+  "ticketOpenAt": "2026-10-10T20:00:00+09:00",
+  "ticketLinks": [
+    {
+      "vendor": "nol",
+      "url": "https://example.com/nol-ticket"
+    },
+    {
+      "vendor": "yes24",
+      "url": "https://example.com/yes24-ticket"
+    }
+  ],
+  "featured": true,
+  "description": "※ 예시 공연입니다. 관리자 페이지에서 지우고 실제 공연을 등록하세요.\n\n한 해의 마지막을 함께 보내는 라이브유니버스의 연말 페스티벌.\n이틀 동안 계열사 아티스트들이 하나의 무대에 오릅니다.",
+  "poster": "/uploads/samples/orbit-night-2026.svg",
+  "gallery": []
+}

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>LIVE UNIVERSE CMS</title>
+    <link href="/cms/config.yml" type="text/yaml" rel="cms-config-url" />
+  </head>
+  <body>
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
+    <script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>
+    <script>
+      // 로컬에서는 decap-server(npx decap-server)로 바로 파일을 고치고,
+      // 배포 사이트에서는 GitHub 로그인 후 레포에 커밋한다.
+      var isLocal = ["localhost", "127.0.0.1"].indexOf(location.hostname) !== -1;
+      CMS.init({
+        config: {
+          local_backend: isLocal,
+          backend: {
+            name: "github",
+            repo: "ych830/live-universe",
+            branch: "main",
+            base_url: location.origin,
+            auth_endpoint: "api/decap/auth",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
