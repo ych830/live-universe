@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme {
+  --color-space: #0a0f2c;
+  --color-space-deep: #141a3d;
   --color-cobalt: #1f45fc;
-  --color-cobalt-deep: #1535d6;
   --color-ink: #07070c;
   --color-panel: #101019;
   --color-panel-2: #171724;
@@ -16,8 +17,13 @@
   --font-display: var(--font-poppins), "Pretendard Variable", sans-serif;
   --animate-spin-slow: spin 60s linear infinite;
   --animate-drop: drop 2.4s ease-in-out infinite;
+  --animate-twinkle: twinkle 5s ease-in-out infinite alternate;
   --animate-spin-rev: spin 60s linear infinite reverse;
 
+  @keyframes twinkle {
+    from { opacity: 0.1; }
+    to { opacity: 1; }
+  }
   @keyframes drop {
     0% { transform: scaleY(0); transform-origin: top; }
     45% { transform: scaleY(1); transform-origin: top; }
@@ -27,13 +33,14 @@
 }
 
 html {
-  background: var(--color-cobalt);
+  background: var(--color-space);
   color: var(--color-fg);
   scroll-behavior: smooth;
 }
 
+/* 배경은 html 이 칠하고, body 는 투명하게 둬서 SpaceBackground(별)가 비치게 한다 */
 body {
-  background: var(--color-cobalt);
+  background: transparent;
   color: var(--color-fg);
   font-family: var(--font-sans);
   word-break: keep-all;

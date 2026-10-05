@@ -8,7 +8,7 @@ export function Poster({ p, className = "" }: { p: Performance; className?: stri
     // eslint-disable-next-line @next/next/no-img-element -- 업로드 이미지 도메인이 정해져 있지 않아 일반 img 사용
     <img src={p.poster} alt={`${p.title} 포스터`} loading="lazy" className={`h-full w-full object-cover ${className}`} />
   ) : (
-    <div className={`flex h-full w-full items-end bg-cobalt-deep p-4 ${className}`}>
+    <div className={`flex h-full w-full items-end bg-space-deep p-4 ${className}`}>
       <span className="font-display text-lg font-bold leading-tight">{p.title}</span>
     </div>
   );
@@ -45,7 +45,7 @@ export function FramedPoster({ p, className = "" }: { p: Performance; className?
 /** 일레븐식 꽉 찬 타일 — 마우스를 올리면 어두워지며 공연명이 뜬다 */
 export function PosterTile({ p, company, showStatus = false }: { p: Performance; company?: Company; showStatus?: boolean }) {
   return (
-    <Link href={`/performances/${p.slug}`} className="group relative block aspect-[5/7] overflow-hidden bg-cobalt-deep">
+    <Link href={`/performances/${p.slug}`} className="group relative block aspect-[5/7] overflow-hidden bg-space-deep">
       <Poster p={p} className="transition-transform duration-700 ease-out group-hover:scale-105" />
       {showStatus && (
         <div className="absolute left-2 top-2">

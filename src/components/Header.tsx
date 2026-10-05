@@ -21,7 +21,7 @@ export function Header() {
           <BigLogo />
         </Link>
       </div>
-      <nav className="sticky top-0 z-50 bg-cobalt/95 backdrop-blur">
+      <nav className="sticky top-0 z-50 border-b border-white/10 bg-space/75 backdrop-blur-md">
         <ul className="flex h-14 items-center justify-center gap-6 md:gap-12">
           {NAV.map((n) => {
             const active = !n.href.includes("#") && pathname.startsWith(n.href);

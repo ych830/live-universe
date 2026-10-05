@@ -67,7 +67,7 @@ export default async function PerformancePage({ params }: PageProps<"/performanc
           {p.subtitle && <p className="mt-3 text-lg text-white/90">{p.subtitle}</p>}
           {p.artist && <p className="mt-2 text-[15px] text-white/70">{p.artist}</p>}
 
-          <div className="mt-8 border border-white/30 bg-black/15 p-5 md:p-6">
+          <div className="mt-8 border border-white/30 bg-space-deep/70 p-5 backdrop-blur-sm md:p-6">
             {status === "past" ? (
               <p className="text-sm text-white/80">종료된 공연입니다. 함께해 주셔서 감사합니다.</p>
             ) : (
@@ -113,7 +113,7 @@ export default async function PerformancePage({ params }: PageProps<"/performanc
           <h2 className="container-x mb-6 font-display text-sm font-semibold tracking-[0.14em] text-white/75">GALLERY</h2>
           <div className="grid grid-cols-2 md:grid-cols-4">
             {p.gallery.map((src) => (
-              <a key={src} href={src} target="_blank" rel="noreferrer" className="block aspect-square overflow-hidden bg-cobalt-deep">
+              <a key={src} href={src} target="_blank" rel="noreferrer" className="block aspect-square overflow-hidden bg-space-deep">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={src} alt={`${p.title} 사진`} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
               </a>

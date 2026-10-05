@@ -31,7 +31,7 @@ export default async function PerformancesPage({ searchParams }: PageProps<"/per
 
   const chip = (active: boolean) =>
     `whitespace-nowrap px-4 py-2 text-[13px] transition-colors ${
-      active ? "bg-white font-semibold text-cobalt" : "border border-white/40 hover:border-white"
+      active ? "bg-white font-semibold text-space" : "border border-white/40 hover:border-white"
     }`;
 
   return (
