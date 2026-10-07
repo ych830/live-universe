@@ -6,6 +6,7 @@ const base: Performance = {
   slug: "x",
   title: "x",
   gallery: [],
+  detailImages: [],
   startDate: "2026-11-14",
   endDate: "2026-11-15",
   ticketLinks: [],

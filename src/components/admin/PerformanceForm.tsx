@@ -15,6 +15,7 @@ export const EMPTY_PERFORMANCE: PerformanceRow = {
   slug: "",
   title: "",
   gallery: [],
+  detailImages: [],
   startDate: "",
   ticketLinks: [],
   featured: false,
@@ -177,7 +178,9 @@ export function PerformanceForm({
         <Field label="상세 설명" hint="줄바꿈은 그대로 보여요">
           <textarea className={`${inputCls} min-h-40`} {...text("description")} />
         </Field>
-        <span className="block text-[13px] font-medium text-fg/80">사진 (공연 현장, 상세 이미지 등)</span>
+        <span className="block text-[13px] font-medium text-fg/80">상세 이미지 (예매처 상세페이지처럼 원래 비율 그대로 세로로 이어 보여요, 올린 순서대로)</span>
+        <ImageUpload sb={sb} folder="details" value={p.detailImages} onChange={(urls) => set("detailImages", urls)} multiple />
+        <span className="block text-[13px] font-medium text-fg/80">사진 (공연 현장 등, 격자로 보여요)</span>
         <ImageUpload sb={sb} folder="gallery" value={p.gallery} onChange={(urls) => set("gallery", urls)} multiple />
       </Card>
 

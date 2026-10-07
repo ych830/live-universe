@@ -108,6 +108,19 @@ export default async function PerformancePage({ params }: PageProps<"/performanc
         </div>
       </div>
 
+      {p.detailImages.length > 0 && (
+        <section className="mt-16 md:mt-24" aria-label="상세 정보">
+          <h2 className="container-x mb-6 font-display text-sm font-semibold tracking-[0.14em] text-white/75 md:text-center">DETAIL</h2>
+          {/* 예매처 상세페이지처럼 이미지 사이 틈 없이 이어 붙인다 */}
+          <div className="mx-auto max-w-[860px]">
+            {p.detailImages.map((src, i) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img key={src} src={src} alt={`${p.title} 상세 이미지 ${i + 1}`} loading="lazy" className="block h-auto w-full" />
+            ))}
+          </div>
+        </section>
+      )}
+
       {p.gallery.length > 0 && (
         <section className="mt-16 md:mt-24">
           <h2 className="container-x mb-6 font-display text-sm font-semibold tracking-[0.14em] text-white/75">GALLERY</h2>

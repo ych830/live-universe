@@ -27,6 +27,8 @@ export interface Performance {
   company?: string;
   poster?: string;
   gallery: string[];
+  /** 예매처 상세페이지처럼 원래 비율 그대로 세로로 이어 보여주는 긴 이미지 */
+  detailImages: string[];
   /** YYYY-MM-DD (한국 시간 기준 날짜) */
   startDate: string;
   endDate?: string;

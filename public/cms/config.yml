@@ -74,6 +74,12 @@ collections:
             widget: string
             pattern: ["^https?://", "https:// 로 시작해야 해요"]
       - { name: description, label: 상세 설명, widget: text, required: false }
+      - name: detailImages
+        label: 상세 이미지 (예매처 상세페이지처럼 세로로 이어 보여요)
+        label_singular: 상세 이미지
+        widget: list
+        required: false
+        field: { name: image, label: 상세 이미지, widget: image }
       - name: gallery
         label: 사진
         label_singular: 사진

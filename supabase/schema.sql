@@ -38,6 +38,7 @@ create table if not exists public.performances (
   company_slug text references public.companies (slug) on update cascade on delete set null,
   poster text,
   gallery text[] not null default '{}',
+  detail_images text[] not null default '{}',
   start_date date not null,
   end_date date,
   time_text text,
@@ -52,6 +53,9 @@ create table if not exists public.performances (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+-- 이미 만들어 둔 DB 에 '상세 이미지' 칸 추가 (처음 만드는 DB 에서는 아무 일도 안 함)
+alter table public.performances add column if not exists detail_images text[] not null default '{}';
 
 -- 4) 권한: 누구나 읽기, 관리자만 쓰기
 alter table public.companies enable row level security;
