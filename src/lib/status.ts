@@ -59,6 +59,14 @@ export function formatDateRange(start: string, end?: string): string {
   return `${head} – ${tail}`;
 }
 
+/** 카드용 짧은 표기: 2026.11.14 – 11.15 */
+export function formatDateCompact(start: string, end?: string): string {
+  const s = start.replaceAll("-", ".");
+  if (!end || end === start) return s;
+  const e = end.slice(0, 4) === start.slice(0, 4) ? end.slice(5).replace("-", ".") : end.replaceAll("-", ".");
+  return `${s} – ${e}`;
+}
+
 /** 2026.10.10 (토) 20:00 — 한국 시간 */
 export function formatDateTime(iso: string): string {
   const d = new Date(iso);

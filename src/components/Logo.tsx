@@ -1,3 +1,4 @@
+/** 행성 기호 — 관리자 화면과 첫 화면 배경 무늬에 쓴다 */
 export function LogoMark({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" className={className} aria-hidden>
@@ -8,21 +9,23 @@ export function LogoMark({ className = "" }: { className?: string }) {
   );
 }
 
-export function Logo({ className = "" }: { className?: string }) {
+/** 반짝이 (네 갈래 별) */
+export function Sparkle({ className = "" }: { className?: string }) {
   return (
-    <span className={`flex items-center gap-2 ${className}`}>
-      <LogoMark className="h-6 w-6" />
-      <span className="font-display text-[15px] font-extrabold tracking-[0.04em]">LIVE UNIVERSE</span>
-    </span>
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <path d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0Z" fill="currentColor" />
+    </svg>
   );
 }
 
-/** 페이지 맨 위 가운데에 크게 들어가는 로고 (일레븐의 "11" 자리) */
-export function BigLogo() {
+export function Logo({ className = "" }: { className?: string }) {
   return (
-    <span className="flex flex-col items-center gap-2">
-      <LogoMark className="h-12 w-12 md:h-14 md:w-14" />
-      <span className="font-display text-xl font-extrabold leading-none tracking-[0.02em] md:text-[28px]">LIVE UNIVERSE</span>
+    <span className={`inline-flex flex-col leading-none ${className}`}>
+      <span className="flex items-start gap-0.5">
+        <span className="font-display text-[20px] font-extrabold tracking-[-0.01em] md:text-[22px]">LIVE UNIVERSE</span>
+        <Sparkle className="-mt-1.5 h-5 w-5 text-brand md:h-6 md:w-6" />
+      </span>
+      <span className="mt-1 font-display text-[7.5px] font-medium tracking-[0.46em] md:text-[8px]">CONCERT CREATIVE GROUP</span>
     </span>
   );
 }

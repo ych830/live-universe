@@ -40,3 +40,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 공연 포스터·상세 이미지는 회사 자산이라 레포에 올리지 않는다 (관리자 페이지로 업로드)
+/public/uploads/performances/

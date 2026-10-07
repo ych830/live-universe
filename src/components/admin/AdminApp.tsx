@@ -220,7 +220,7 @@ function Dashboard({ sb, email, source }: { sb: SupabaseClient; email: string; s
                 {performances.length === 0 && <li className="p-10 text-center text-sm text-muted">등록된 공연이 없어요. 오른쪽 위 버튼으로 첫 공연을 등록해 보세요.</li>}
                 {performances.map((p) => (
                   <li key={p.id} className="flex items-center gap-4 p-3 md:p-4">
-                    <div className="aspect-[5/7] w-12 shrink-0 overflow-hidden rounded bg-panel md:w-14">
+                    <div className="aspect-[3/4] w-12 shrink-0 overflow-hidden rounded bg-panel md:w-14">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       {p.poster && <img src={p.poster} alt="" className="h-full w-full object-cover" />}
                     </div>

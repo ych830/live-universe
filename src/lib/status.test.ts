@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatDateRange, formatDateTime, getStatus, splitByTime } from "./status";
+import { formatDateCompact, formatDateRange, formatDateTime, getStatus, splitByTime } from "./status";
 import type { Performance } from "./types";
 
 const base: Performance = {
@@ -54,6 +54,11 @@ describe("format", () => {
     expect(formatDateRange("2026-11-14", "2026-11-15")).toBe("2026.11.14 (토) – 11.15 (일)");
     expect(formatDateRange("2026-12-31", "2027-01-01")).toBe("2026.12.31 (목) – 2027.01.01 (금)");
     expect(formatDateRange("2026-11-14")).toBe("2026.11.14 (토)");
+  });
+  it("카드용 짧은 날짜", () => {
+    expect(formatDateCompact("2026-11-14", "2026-11-15")).toBe("2026.11.14 – 11.15");
+    expect(formatDateCompact("2026-12-31", "2027-01-01")).toBe("2026.12.31 – 2027.01.01");
+    expect(formatDateCompact("2026-06-13")).toBe("2026.06.13");
   });
   it("UTC 로 저장된 오픈 시각도 KST 로 보여준다", () => {
     expect(formatDateTime("2026-10-10T11:00:00.000Z")).toBe("2026.10.10 (토) 20:00");

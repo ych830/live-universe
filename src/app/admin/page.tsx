@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: "관리자", robots: { index: false, 
 
 export default function AdminPage() {
   return (
-    <div className="min-h-dvh bg-ink">
+    <div className="min-h-dvh bg-ink text-fg">
       <AdminApp source={process.env.CONTENT_SOURCE === "supabase" ? "supabase" : "files"} />
     </div>
   );

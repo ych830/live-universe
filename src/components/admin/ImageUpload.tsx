@@ -39,7 +39,7 @@ export function ImageUpload({
     <div>
       <div className={multiple ? "grid grid-cols-3 gap-3 md:grid-cols-4" : ""}>
         {value.map((url) => (
-          <div key={url} className={`group relative overflow-hidden rounded-lg border border-line bg-ink ${multiple ? "aspect-square" : "aspect-[5/7] w-40"}`}>
+          <div key={url} className={`group relative overflow-hidden rounded-lg border border-line bg-ink ${multiple ? "aspect-square" : "aspect-[3/4] w-40"}`}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={url} alt="" className="h-full w-full object-cover" />
             <button
@@ -54,7 +54,7 @@ export function ImageUpload({
         {(multiple || value.length === 0) && (
           <label
             className={`flex cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-fg/25 text-center text-xs text-muted transition-colors hover:border-violet hover:text-fg ${
-              multiple ? "aspect-square" : "aspect-[5/7] w-40"
+              multiple ? "aspect-square" : "aspect-[3/4] w-40"
             }`}
           >
             <span className="text-2xl leading-none">+</span>
