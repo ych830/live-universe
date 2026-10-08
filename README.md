@@ -7,7 +7,7 @@ Next.js 16 (App Router) + Tailwind CSS 4.
 
 | 주소 | 내용 |
 |---|---|
-| `/` | 메인 — 색 띠 위 대표 공연, FEATURED PERFORMANCES, ARCHIVE, 그룹 소개, 문의 |
+| `/` | 메인 — 예매 중·오픈 예정 공연 슬라이드(없으면 대표 공연 한 장), FEATURED PERFORMANCES, ARCHIVE, 그룹 소개, 문의 |
 | `/performances` | 공연 목록 (메뉴 이름 PROJECT) — 검색(`?q=`), 상태(예매 중/오픈 예정/공개 예정/지난 공연)·계열사로 거르기 |
 | `/performances/[주소]` | 공연 상세 — 포스터, 공연 정보, 티켓 오픈 카운트다운, 예매처 버튼, 상세 이미지, 사진 |
 | `/companies` | 계열사 소개 |

@@ -19,7 +19,7 @@ export function PosterCard({ p, showStatus = false, className = "" }: { p: Perfo
   const status = getStatus(p);
   return (
     <Link href={`/performances/${p.slug}`} className={`group block ${className}`}>
-      <div className="relative aspect-[3/4] overflow-hidden bg-soft shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
+      <div className="relative aspect-[3/4] overflow-hidden bg-soft shadow-[0_8px_24px_-6px_rgba(0,0,0,0.5)]">
         <Poster p={p} className="transition-transform duration-500 ease-out group-hover:scale-[1.04]" />
         {showStatus && status !== "past" && (
           <div className="absolute left-2 top-2">
@@ -44,11 +44,11 @@ export function PosterCard({ p, showStatus = false, className = "" }: { p: Perfo
 /** ARCHIVE 의 작은 포스터 — 마우스를 올리면 공연명 */
 export function ArchiveTile({ p }: { p: Performance }) {
   return (
-    <Link href={`/performances/${p.slug}`} className="group relative block aspect-[3/4] overflow-hidden bg-paper shadow-[0_1px_4px_rgba(0,0,0,0.08)]">
+    <Link href={`/performances/${p.slug}`} className="group relative block aspect-[3/4] overflow-hidden bg-soft shadow-[0_4px_14px_rgba(0,0,0,0.35)]">
       <Poster p={p} className="transition-transform duration-500 group-hover:scale-105" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-text/75 p-2 text-center text-paper opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+      <div className="absolute inset-0 flex flex-col items-center justify-center bg-paper/85 p-2 text-center text-text opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
         <p className="line-clamp-3 text-[12px] font-bold leading-snug">{p.title}</p>
-        <p className="mt-1 text-[10.5px] text-paper/75">{formatDateCompact(p.startDate)}</p>
+        <p className="mt-1 text-[10.5px] text-sub">{formatDateCompact(p.startDate)}</p>
       </div>
     </Link>
   );

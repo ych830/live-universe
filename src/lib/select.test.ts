@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { matchesQuery, pickHero, splitFeatured } from "./select";
+import { matchesQuery, pickHero, pickHeroSlides, splitFeatured } from "./select";
 import type { Performance } from "./types";
 
 // 2026-10-04 12:00 KST
@@ -21,6 +21,25 @@ describe("pickHero", () => {
     expect(pickHero([mk("soon", "2027-01-01"), mk("old", "2025-05-01")], now)?.slug).toBe("soon");
     expect(pickHero([mk("old1", "2025-05-01"), mk("old2", "2026-05-01")], now)?.slug).toBe("old2");
     expect(pickHero([], now)).toBeUndefined();
+  });
+});
+
+describe("pickHeroSlides", () => {
+  const opensoon = (slug: string, d: string, f = false) => mk(slug, d, { ticketOpenAt: "2026-12-01T20:00:00+09:00", featured: f });
+  it("예매 중·오픈 예정만: featured → 예매 중 → 오픈 예정, 같은 단계는 날짜순", () => {
+    const list = [
+      opensoon("os-early", "2026-11-20"),
+      onsale("on-late", "2027-02-01"),
+      onsale("on-early", "2026-12-01"),
+      opensoon("os-featured", "2027-03-01", true),
+      mk("coming", "2026-10-20"), // 공개 예정 — 빠진다
+      mk("past", "2025-01-01", { featured: true }), // 지난 공연 — 빠진다
+    ];
+    expect(pickHeroSlides(list, now).map((p) => p.slug)).toEqual(["os-featured", "on-early", "on-late", "os-early"]);
+  });
+  it("예매 중·오픈 예정이 없으면 대표 공연 한 장", () => {
+    expect(pickHeroSlides([mk("coming", "2026-10-20"), mk("past", "2025-01-01", { featured: true })], now).map((p) => p.slug)).toEqual(["past"]);
+    expect(pickHeroSlides([], now)).toEqual([]);
   });
 });
 

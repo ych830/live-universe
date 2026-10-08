@@ -1,28 +1,37 @@
 import { Carousel } from "@/components/Carousel";
-import { FeaturedHero } from "@/components/FeaturedHero";
+import { HeroSlider } from "@/components/HeroSlider";
 import { Orbit } from "@/components/Orbit";
 import { ArchiveTile, PosterCard } from "@/components/Poster";
 import { SectionTitle } from "@/components/SectionTitle";
 import { getCompanies, getPerformances } from "@/lib/content";
-import { pickHero, splitFeatured } from "@/lib/select";
+import { pickHeroSlides, splitFeatured } from "@/lib/select";
 import { SITE } from "@/lib/site";
-import { splitByTime } from "@/lib/status";
+import { formatDateRange, formatDateTime, getStatus, splitByTime } from "@/lib/status";
 
 export const revalidate = 60;
 
 export default async function Home() {
   const [performances, companies] = await Promise.all([getPerformances(), getCompanies()]);
-  const hero = pickHero(performances);
+  const slides = pickHeroSlides(performances).map((p) => {
+    const company = companies.find((c) => c.slug === p.company);
+    return {
+      p,
+      status: getStatus(p),
+      companyName: company?.nameEn ?? company?.name,
+      dateText: formatDateRange(p.startDate, p.endDate),
+      openText: p.ticketOpenAt ? formatDateTime(p.ticketOpenAt) : undefined,
+    };
+  });
   const { featured, archive } = splitFeatured(performances);
   const { current } = splitByTime(performances);
-  const heroCompany = companies.find((c) => c.slug === hero?.company);
 
   return (
     <>
-      <FeaturedHero p={hero} companyName={heroCompany?.nameEn ?? heroCompany?.name} />
+      {/* 슬라이드 묶음이 바뀌면 새로 그려서 넘김 위치가 범위를 벗어나지 않게 한다 */}
+      <HeroSlider key={slides.map((s) => s.p.slug).join("|")} slides={slides} />
 
       {featured.length > 0 && (
-        <section className="py-16 md:py-24">
+        <section className="pb-16 pt-8 md:pb-20 md:pt-10">
           <SectionTitle en="FEATURED PERFORMANCES" ko="지금, 가장 특별한 무대들을 소개합니다." href="/performances" more="ALL PROJECTS" />
           <div className="container-x">
             <Carousel>
@@ -35,7 +44,7 @@ export default async function Home() {
       )}
 
       {archive.length > 0 && (
-        <section className="bg-soft py-16 md:py-24">
+        <section className="border-y border-rule bg-soft/70 py-16 md:py-20">
           <SectionTitle en="ARCHIVE" ko="지나온 무대들이 만들어낸 또 하나의 우주." href="/performances?status=past" />
           <div className="container-x grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9">
             {archive.slice(0, 18).map((p) => (
@@ -45,7 +54,7 @@ export default async function Home() {
         </section>
       )}
 
-      <section id="about" className="scroll-mt-4 overflow-x-clip py-16 md:py-24">
+      <section id="about" className="scroll-mt-4 overflow-x-clip py-16 md:py-20">
         <div className="container-x grid items-center gap-14 md:grid-cols-2 md:gap-20">
           <div>
             <p className="flex items-center gap-4 font-display text-[11px] font-semibold tracking-[0.2em]">
@@ -77,18 +86,19 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="contact" className="scroll-mt-4 bg-brand py-16 text-brand-ink md:py-24">
-        <div className="container-x grid gap-10 md:grid-cols-2 md:items-end">
+      <section id="contact" className="relative scroll-mt-4 overflow-hidden border-t border-rule bg-soft/70 py-16 md:py-20">
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_80%_at_85%_100%,rgba(47,84,255,0.35),transparent_70%)]" />
+        <div className="container-x relative grid gap-10 md:grid-cols-2 md:items-end">
           <div>
             <h2 className="font-display text-[38px] font-extrabold leading-[1.05] tracking-[-0.02em] md:text-[56px]">
               HELLO,
               <br />
               WE ARE LIVE UNIVERSE
             </h2>
-            <p className="mt-4 font-display text-[12px] font-medium tracking-[0.12em] opacity-80">CONCERT CREATIVE GROUP</p>
+            <p className="mt-4 font-display text-[12px] font-medium tracking-[0.12em] text-brand-soft">CONCERT CREATIVE GROUP</p>
           </div>
           <div>
-            <p className="text-[14px] font-semibold opacity-80">공연 기획 · 협업 · 대관 문의</p>
+            <p className="text-[14px] font-semibold text-sub">공연 기획 · 협업 · 대관 문의</p>
             <ul className="mt-5 space-y-4 text-[15px] md:text-base">
               <li className="flex items-center gap-4">
                 <MailIcon />

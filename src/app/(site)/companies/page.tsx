@@ -38,7 +38,7 @@ export default async function CompaniesPage() {
                   <div className="flex items-center gap-4">
                     {c.logo ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={c.logo} alt={`${c.name} 로고`} className="h-14 w-14 rounded-full border border-rule object-contain p-2" />
+                      <img src={c.logo} alt={`${c.name} 로고`} className="h-14 w-14 rounded-full border border-rule bg-white object-contain p-2" />
                     ) : (
                       <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand font-display text-lg font-bold text-brand-ink">
                         {(c.nameEn ?? c.name).slice(0, 1)}

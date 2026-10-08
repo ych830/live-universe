@@ -25,7 +25,7 @@ export function Header() {
   const [menu, setMenu] = useState(false);
 
   return (
-    <header className="relative z-40 border-b border-rule bg-paper">
+    <header className="relative z-40 border-b border-rule bg-paper/70 backdrop-blur-md">
       <div className="container-x flex h-16 items-center justify-between">
         <Link href="/" aria-label="LIVE UNIVERSE 홈" onClick={() => setMenu(false)}>
           <Logo />

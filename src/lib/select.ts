@@ -16,6 +16,24 @@ export function pickHero(list: Performance[], now: Date = new Date()): Performan
   return picked ?? current[0] ?? past[0];
 }
 
+const STATUS_RANK: Record<string, number> = { onsale: 0, opensoon: 1 };
+
+/**
+ * 첫 화면 슬라이드. 예매 중·오픈 예정 공연만 (featured → 예매 중 → 오픈 예정 → 날짜순).
+ * 하나도 없으면 pickHero 가 고른 공연 한 장.
+ */
+export function pickHeroSlides(list: Performance[], now: Date = new Date()): Performance[] {
+  const { current } = splitByTime(list, now);
+  const ticketing = current.filter((p) => getStatus(p, now) in STATUS_RANK);
+  if (ticketing.length) {
+    return [...ticketing].sort(
+      (a, b) => byFeaturedFirst(a, b) || STATUS_RANK[getStatus(a, now)] - STATUS_RANK[getStatus(b, now)],
+    );
+  }
+  const fallback = pickHero(list, now);
+  return fallback ? [fallback] : [];
+}
+
 /**
  * FEATURED PERFORMANCES 줄과 ARCHIVE 를 나눈다.
  * 다가오는 공연 전부 + featured 지난 공연, 모자라면 최근 지난 공연으로 min 개까지 채운다. 나머지 지난 공연은 ARCHIVE.

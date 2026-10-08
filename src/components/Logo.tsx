@@ -23,7 +23,7 @@ export function Logo({ className = "" }: { className?: string }) {
     <span className={`inline-flex flex-col leading-none ${className}`}>
       <span className="flex items-start gap-0.5">
         <span className="font-display text-[20px] font-extrabold tracking-[-0.01em] md:text-[22px]">LIVE UNIVERSE</span>
-        <Sparkle className="-mt-1.5 h-5 w-5 text-brand md:h-6 md:w-6" />
+        <Sparkle className="-mt-1.5 h-5 w-5 text-brand-soft md:h-6 md:w-6" />
       </span>
       <span className="mt-1 font-display text-[7.5px] font-medium tracking-[0.46em] md:text-[8px]">CONCERT CREATIVE GROUP</span>
     </span>

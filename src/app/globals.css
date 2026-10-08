@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  /* 공개 사이트 (밝은 화면) */
-  --color-paper: #ffffff;
-  --color-soft: #f3f3f1;
-  --color-text: #111111;
-  --color-sub: #6e6e6e;
-  --color-rule: #e4e4e4;
-  /* 대표 색: 색 띠·포인트. 바꿀 때는 이 두 줄만 고친다 */
-  --color-brand: #ff7a30;
-  --color-brand-ink: #111111;
+  /* 공개 사이트: 네이비 밤하늘 */
+  --color-paper: #0a0f2c;
+  --color-soft: #121838;
+  --color-text: #f4f5fb;
+  --color-sub: #a6abc6;
+  --color-rule: #ffffff1f;
+  /* 포인트 색 (코발트). 바꿀 때는 SpaceBackground·메인 CONTACT 의 rgba(47,84,255,…) 빛도 같이 */
+  --color-brand: #2f54ff;
+  --color-brand-ink: #ffffff;
+  --color-brand-soft: #8ea2ff;
 
   /* 관리자 화면 (어두운 화면) */
   --color-ink: #07070c;
@@ -26,6 +27,18 @@
   --font-display: var(--font-poppins), "Pretendard Variable", sans-serif;
   --animate-spin-slow: spin 60s linear infinite;
   --animate-spin-rev: spin 60s linear infinite reverse;
+  --animate-twinkle: twinkle 5s ease-in-out infinite alternate;
+
+  @keyframes twinkle {
+    from { opacity: 0.1; }
+    to { opacity: 1; }
+  }
+}
+
+/* 첫 화면 슬라이드 진행 막대 (인라인 style 에서 쓴다) */
+@keyframes hero-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
 html {
@@ -34,8 +47,9 @@ html {
   scroll-behavior: smooth;
 }
 
+/* 배경은 html 이 칠하고 body 는 투명하게 둬서 SpaceBackground(별)가 비치게 한다 */
 body {
-  background: var(--color-paper);
+  background: transparent;
   color: var(--color-text);
   font-family: var(--font-sans);
   word-break: keep-all;
