@@ -60,7 +60,8 @@ export function Header() {
 
       {search && (
         <div className="absolute inset-x-0 top-full z-50 border-y border-rule bg-paper shadow-[0_12px_24px_-12px_rgba(0,0,0,0.15)]">
-          <form action="/performances" className="container-x flex items-center gap-3 py-4" onSubmit={() => setSearch(false)}>
+          {/* 제출 중에 검색창을 닫으면 form 이 사라져 제출이 취소된다. 페이지가 바뀌면서 자연히 닫힌다 */}
+          <form action="/performances" className="container-x flex items-center gap-3 py-4">
             <SearchIcon />
             <input name="q" autoFocus placeholder="공연명, 출연, 장소로 검색" className="flex-1 bg-transparent py-2 text-base outline-none placeholder:text-sub" />
             <button type="submit" className="bg-text px-5 py-2.5 font-display text-[12px] font-semibold tracking-[0.08em] text-paper">SEARCH</button>
