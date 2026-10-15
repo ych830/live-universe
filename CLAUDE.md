@@ -32,8 +32,11 @@
   - 포인트 색은 `globals.css` 의 `--color-brand` / `--color-brand-ink` / `--color-brand-soft` (지금 코발트). 바꿀 때는 코발트 빛
     `rgba(47,84,255,…)`(`SpaceBackground.tsx`, 메인 CONTACT)도 같이 바꾼다. 노랑은 일레븐과 겹쳐서 쓰지 않기로 함.
   - 포스터 카드 비율 3:4 (예매처 포스터 750×1000 기준). 공연 상세에 긴 '상세 이미지'를 원래 비율로 세로로 붙인다.
-- 공연 포스터·상세 이미지는 회사 자산이라 공개 레포에 올리지 않는다 (사용자 요청). `public/uploads/performances/` 는 `.gitignore` 에 있고,
+- 공연 포스터·상세 이미지는 회사 자산이라 `main`(코드)에는 올리지 않는다 (사용자 요청). `public/uploads/performances/` 는 `.gitignore` 에 있고,
   커밋 전에 `git status` 로 이미지가 섞이지 않았는지 확인한다.
+- 단, 임시 미리보기는 GitHub Pages(`gh-pages` 브랜치, https://ych830.github.io/live-universe/)에 포스터·상세까지 공개로 올린다
+  (사용자 결정 2026-10-14: 다른 사람도 볼 수 있어야 해서 공개되는 것을 감수). 만들기는 README 의 '임시 미리보기'.
+  무료 GitHub Pages 는 레포가 공개여야 하므로 정식 오픈(Vercel + Supabase) 전까지 레포는 공개로 둔다.
 - 실제 공연 데이터: 피그마 'AI 학습용' 파일(`DbuKW3IkEvhJIBwr4ZzlMt`)의 페이지별 원본(포스터·NOL 상세)을 쓴다 — 송창식, 어쩌다 인천 7.18·7.19,
   어쩌다 스페셜 제철발라드, 김창완밴드, 시인과 촌장. 상세는 놀티켓 규격(가로 750)으로 맞춘다. 연세대 11.15·박창근은 채팅으로 받은 작은 이미지뿐.
   새 공연이 생기면 같은 파일에 페이지를 추가해 달라고 하고, 페이지 링크(node-id)를 받아 `download_assets` 로 가져온다.

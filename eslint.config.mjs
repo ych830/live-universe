@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // GitHub Pages 미리보기 빌드 결과
+    ".next-pages/**",
+    ".pages-preview/**",
   ]),
 ]);
 

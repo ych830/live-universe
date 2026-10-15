@@ -74,6 +74,19 @@ npm run build
   3. `public/cms/index.html` 의 `repo` 가 실제 레포(`ych830/live-universe`)·브랜치(`main`)와 같은지 확인합니다.
   4. `/cms` → GitHub 로 로그인 → 저장하면 레포에 커밋되고 호스팅이 다시 배포합니다.
 
+## 임시 미리보기 (GitHub Pages)
+
+정식 오픈 전에 보여주기용. 포스터까지 들어간 정적 사본을 `gh-pages` 브랜치에 올리면 https://ych830.github.io/live-universe/ 에 뜬다.
+
+```bash
+node scripts/build-pages-preview.mjs   # .pages-preview/ 에 만들어짐 (로컬의 public/uploads/performances 포함)
+# .pages-preview/ 내용을 gh-pages 브랜치로 push
+```
+
+- 정적 사본이라 검색·필터는 동작하지 않고(목록 전체가 보임), 예매 중·지난 공연 같은 상태는 만든 시점에 멈춘다. 공연을 바꾸면 다시 만들어 올린다.
+- 검색엔진에는 안 걸리게 해 두었지만(noindex), 주소를 아는 사람은 누구나 볼 수 있다.
+- 처음 한 번은 GitHub 레포 Settings → Pages 에서 Branch 를 `gh-pages` / `(root)` 로 저장해야 한다.
+
 ## 배포 (Vercel 추천)
 
 1. https://vercel.com 에서 이 GitHub 레포를 Import.

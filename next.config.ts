@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/**/*": ["./content/**/*"],
   },
+  // GitHub Pages 임시 미리보기용 빌드 (scripts/build-pages-preview.mjs 에서만 켜진다)
+  ...(process.env.PAGES_BASE_PATH ? { basePath: process.env.PAGES_BASE_PATH, distDir: ".next-pages" } : {}),
 };
 
 export default nextConfig;
