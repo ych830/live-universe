@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { matchesQuery, pickHero, pickHeroSlides, splitFeatured } from "./select";
+import { filterPerformances, matchesQuery, pickHero, pickHeroSlides, splitFeatured } from "./select";
 import type { Performance } from "./types";
 
 // 2026-10-04 12:00 KST
@@ -61,5 +61,22 @@ describe("matchesQuery", () => {
     expect(matchesQuery(mk("y", "2026-01-01", { title: "BLUE HOUR" }), "blue hour")).toBe(true);
     expect(matchesQuery(p, "박창근")).toBe(false);
     expect(matchesQuery(p, "  ")).toBe(true);
+  });
+});
+
+describe("filterPerformances", () => {
+  const list = [
+    mk("past", "2026-09-01", { company: "a", artist: "송창식" }),
+    onsale("sale", "2026-12-01"),
+    mk("soon", "2026-11-01", { company: "a", artist: "국카스텐 · 김뜻돌" }),
+  ];
+  it("다가오는 공연(가까운 순) 다음에 지난 공연", () => {
+    expect(filterPerformances(list, {}, now).map((p) => p.slug)).toEqual(["soon", "sale", "past"]);
+  });
+  it("상태·계열사·검색어로 거른다", () => {
+    expect(filterPerformances(list, { status: "onsale" }, now).map((p) => p.slug)).toEqual(["sale"]);
+    expect(filterPerformances(list, { company: "a" }, now).map((p) => p.slug)).toEqual(["soon", "past"]);
+    expect(filterPerformances(list, { company: "a", q: "김뜻돌" }, now).map((p) => p.slug)).toEqual(["soon"]);
+    expect(filterPerformances(list, { status: "past", q: "김뜻돌" }, now)).toEqual([]);
   });
 });

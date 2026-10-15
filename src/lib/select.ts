@@ -1,4 +1,4 @@
-import { getStatus, splitByTime } from "./status";
+import { getStatus, splitByTime, type Status } from "./status";
 import type { Performance } from "./types";
 
 const byFeaturedFirst = (a: Performance, b: Performance) => Number(b.featured) - Number(a.featured);
@@ -54,4 +54,16 @@ export function matchesQuery(p: Performance, q: string): boolean {
   const needle = norm(q);
   if (!needle) return true;
   return [p.title, p.subtitle, p.artist, p.venue].some((f) => f && norm(f).includes(needle));
+}
+
+/** 공연 목록(PROJECT): 다가오는 공연(가까운 순) → 지난 공연(최근 순) 중 상태·계열사·검색어가 맞는 것 */
+export function filterPerformances(
+  list: Performance[],
+  f: { status?: Status; company?: string; q?: string },
+  now: Date = new Date(),
+): Performance[] {
+  const { current, past } = splitByTime(list, now);
+  return [...current, ...past].filter(
+    (p) => (!f.status || getStatus(p, now) === f.status) && (!f.company || p.company === f.company) && matchesQuery(p, f.q ?? ""),
+  );
 }

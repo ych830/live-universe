@@ -83,7 +83,7 @@ node scripts/build-pages-preview.mjs   # .pages-preview/ 에 만들어짐 (로�
 # .pages-preview/ 내용을 gh-pages 브랜치로 push
 ```
 
-- 정적 사본이라 검색·필터는 동작하지 않고(목록 전체가 보임), 예매 중·지난 공연 같은 상태는 만든 시점에 멈춘다. 공연을 바꾸면 다시 만들어 올린다.
+- 검색·필터는 브라우저에서 거르므로 그대로 동작한다. 다만 첫 화면·상세의 예매 중·지난 공연 같은 상태는 만든 시점에 멈추므로, 공연을 바꾸면 다시 만들어 올린다.
 - 검색엔진에는 안 걸리게 해 두었지만(noindex), 주소를 아는 사람은 누구나 볼 수 있다.
 - 처음 한 번은 GitHub 레포 Settings → Pages 에서 Branch 를 `gh-pages` / `(root)` 로 저장해야 한다.
 
