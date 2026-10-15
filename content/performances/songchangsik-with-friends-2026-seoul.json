@@ -12,6 +12,15 @@
     "/uploads/performances/songchangsik-2026-seoul-detail.jpg"
   ],
   "description": "오랜 세월 음악의 길을 함께해 온 벗들과 특별한 친구들이 모여, 가객을 향한 존경과 애정을 담아 오직 '송창식의 명곡'들로만 무대를 가득 채우는 아주 특별한 공연입니다. 저마다의 색깔로 새롭게 피어나는 그의 노래들을 통해, 가객과 친구들이 다 함께 빚어내는 진한 낭만과 감동의 시간을 만나보시길 바랍니다.",
-  "ticketLinks": [],
+  "ticketLinks": [
+    {
+      "vendor": "nol",
+      "url": "https://nol.yanolja.com/ticket/products/26013187"
+    },
+    {
+      "vendor": "ticketlink",
+      "url": "https://www.ticketlink.co.kr/product/65519"
+    }
+  ],
   "gallery": []
 }
