@@ -144,21 +144,20 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
                 aria-label={`${i + 1} / ${n}: ${s.p.title}`}
                 aria-hidden={!active}
                 inert={!active}
-                className={`grid content-start items-center gap-8 transition-[opacity,visibility] lg:content-normal duration-700 [grid-area:1/1] lg:grid-cols-[300px_1fr] lg:gap-14 ${
+                className={`grid content-start items-start gap-8 transition-[opacity,visibility] lg:content-normal duration-700 [grid-area:1/1] lg:grid-cols-[300px_1fr] lg:gap-14 ${
                   active ? "visible opacity-100" : "invisible opacity-0"
                 }`}
               >
                 <Link
                   href={`/performances/${s.p.slug}`}
-                  className="mx-auto block w-[70%] max-w-[300px] shadow-[0_24px_60px_-12px_rgba(0,0,0,0.7)] ring-1 ring-white/10 transition-transform duration-500 hover:-translate-y-1 lg:w-full"
+                  className="mx-auto block aspect-[3/4] w-[70%] max-w-[300px] overflow-hidden shadow-[0_24px_60px_-12px_rgba(0,0,0,0.7)] ring-1 ring-white/10 transition-transform duration-500 hover:-translate-y-1 lg:w-full"
                 >
+                  {/* 포스터 비율이 달라도 넘길 때 크기가 같도록 3:4 칸에 채운다 (목록 카드와 같은 방식) */}
                   {s.p.poster ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={s.p.poster} alt={`${s.p.title} 포스터`} className="block h-auto w-full" />
+                    <img src={s.p.poster} alt={`${s.p.title} 포스터`} className="h-full w-full object-cover" />
                   ) : (
-                    <div className="aspect-[3/4]">
-                      <Poster p={s.p} />
-                    </div>
+                    <Poster p={s.p} />
                   )}
                 </Link>
 
@@ -199,7 +198,7 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
                     )}
                   </dl>
                   <div className="mt-8 flex flex-wrap gap-2">
-                    {ticketing && <TicketButtons links={s.p.ticketLinks.slice(0, 1)} />}
+                    {ticketing && <TicketButtons links={s.p.ticketLinks} />}
                     <Link
                       href={`/performances/${s.p.slug}`}
                       className={`group inline-flex items-center gap-4 px-5 py-3 font-display text-[12px] font-bold tracking-[0.16em] transition-colors ${
