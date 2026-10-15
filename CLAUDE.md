@@ -40,7 +40,8 @@
 - 실제 공연 데이터: 피그마 'AI 학습용' 파일(`DbuKW3IkEvhJIBwr4ZzlMt`)의 페이지별 원본(포스터·NOL 상세)을 쓴다 — 송창식, 어쩌다 인천 7.18·7.19,
   어쩌다 스페셜 제철발라드, 김창완밴드, 시인과 촌장. 상세는 놀티켓 규격(가로 750)으로 맞춘다. 연세대 11.15·박창근은 채팅으로 받은 작은 이미지뿐.
 - 출연(artist)은 **전원** 적는다. '국카스텐 외' 처럼 줄이지 않는다 (사용자 요청). `src/lib/content/data.test.ts` 가 막는다.
-- 공연 목록(PROJECT)의 검색·상태·계열사 필터는 브라우저에서 거른다 (`PerformanceBrowser`). 서버 없는 GitHub Pages 미리보기에서도 동작하게.
+- 공연 목록(PROJECT)의 검색·상태·계열사 필터: 서버가 있으면 서버가 처음부터 걸러 보내고, 서버 없는 GitHub Pages 사본(`PAGES_BASE_PATH`)에서는
+  브라우저가 주소를 읽어 그 자리에서 거른다 (`PerformanceBrowser` 의 `SearchParamsSync`). 목록을 Suspense fallback 으로 통째로 갈아끼우지 않는다.
   새 공연이 생기면 같은 파일에 페이지를 추가해 달라고 하고, 페이지 링크(node-id)를 받아 `download_assets` 로 가져온다.
 
 ## 아직 안 된 것

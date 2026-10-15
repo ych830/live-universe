@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 import { filterPerformances } from "@/lib/select";
 import { STATUS_LABEL, type Status } from "@/lib/status";
 import type { Company, Performance } from "@/lib/types";
@@ -9,22 +10,28 @@ import { PosterCard } from "./Poster";
 
 const STATUSES: Status[] = ["onsale", "opensoon", "upcoming", "past"];
 
+export interface ListFilter {
+  status?: string;
+  company?: string;
+  q?: string;
+}
+
 interface Props {
   performances: Performance[];
   companies: Company[];
+  /** 서버가 주소에서 읽은 값. 서버가 없는 GitHub Pages 사본에서는 빈 값이고 브라우저가 주소를 읽어 채운다 */
+  initial: ListFilter;
 }
 
-/** 주소의 ?q·status·company 를 브라우저에서 읽어 거른다 (서버 없이 올린 정적 사본에서도 동작하도록) */
-export function PerformanceBrowser(props: Props) {
-  const params = useSearchParams();
-  return <PerformanceList {...props} params={params} />;
-}
-
-/** 검색창 · 상태/계열사 칩 · 공연 카드. params 가 없으면 거르지 않은 전체 목록 */
-export function PerformanceList({ performances, companies, params }: Props & { params?: { get(name: string): string | null } }) {
-  const status = STATUSES.find((s) => s === params?.get("status"));
-  const company = params?.get("company") || undefined;
-  const q = (params?.get("q") ?? "").trim();
+/**
+ * 검색창 · 상태/계열사 칩 · 공연 카드.
+ * 주소(?q·status·company)는 작은 SearchParamsSync 만 읽어서, 정적 사본에서도 목록을 갈아끼우지 않고 그 자리에서 거른다.
+ */
+export function PerformanceBrowser({ performances, companies, initial }: Props) {
+  const [filter, setFilter] = useState(initial);
+  const status = STATUSES.find((s) => s === filter.status);
+  const company = filter.company || undefined;
+  const q = (filter.q ?? "").trim();
   const list = filterPerformances(performances, { status, company, q });
 
   const href = (next: { status?: string; company?: string; q?: string }) => {
@@ -46,6 +53,9 @@ export function PerformanceList({ performances, companies, params }: Props & { p
 
   return (
     <>
+      <Suspense fallback={null}>
+        <SearchParamsSync onChange={setFilter} />
+      </Suspense>
       <form action="/performances" className="mt-8 flex max-w-xl items-center gap-3 border-b-2 border-text">
         {status && <input type="hidden" name="status" value={status} />}
         {company && <input type="hidden" name="company" value={company} />}
@@ -94,4 +104,14 @@ export function PerformanceList({ performances, companies, params }: Props & { p
       )}
     </>
   );
+}
+
+/** 주소의 검색어·필터를 읽어 목록에 넘긴다. 이 컴포넌트만 브라우저에서 그려지므로 목록은 갈아끼워지지 않는다 */
+function SearchParamsSync({ onChange }: { onChange: (f: ListFilter) => void }) {
+  const query = useSearchParams().toString();
+  useEffect(() => {
+    const p = new URLSearchParams(query);
+    onChange({ status: p.get("status") ?? undefined, company: p.get("company") ?? undefined, q: p.get("q") ?? undefined });
+  }, [query, onChange]);
+  return null;
 }

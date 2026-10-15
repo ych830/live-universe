@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import { PerformanceBrowser, PerformanceList } from "@/components/PerformanceBrowser";
+import { PerformanceBrowser, type ListFilter } from "@/components/PerformanceBrowser";
 import { getCompanies, getPerformances } from "@/lib/content";
 
 export const metadata: Metadata = { title: "공연" };
-export const revalidate = 60;
 
-export default async function PerformancesPage() {
+const pick = (v: string | string[] | undefined) => (typeof v === "string" ? v : undefined);
+
+export default async function PerformancesPage({ searchParams }: PageProps<"/performances">) {
   const [performances, companies] = await Promise.all([getPerformances(), getCompanies()]);
+  // 서버가 있으면 처음 HTML 부터 걸러서 보낸다.
+  // GitHub Pages 정적 사본(PAGES_BASE_PATH)은 서버가 없으니 주소를 읽지 않고, 브라우저가 읽어서 거른다.
+  const sp = process.env.PAGES_BASE_PATH ? {} : await searchParams;
+  const initial: ListFilter = { status: pick(sp.status), company: pick(sp.company), q: pick(sp.q) };
 
   return (
     <div className="pb-24 pt-12 md:pt-16">
@@ -18,10 +22,7 @@ export default async function PerformancesPage() {
           <p className="text-[14px] text-sub">라이브유니버스가 만든 공연, 그리고 다음 공연</p>
         </div>
 
-        {/* 검색·필터는 브라우저가 주소(?q·status·company)를 읽어 거른다. 읽기 전에는 전체 목록을 보여준다 */}
-        <Suspense fallback={<PerformanceList performances={performances} companies={companies} />}>
-          <PerformanceBrowser performances={performances} companies={companies} />
-        </Suspense>
+        <PerformanceBrowser performances={performances} companies={companies} initial={initial} />
       </div>
     </div>
   );
